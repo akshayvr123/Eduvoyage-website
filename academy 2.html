@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eduvoyage Academy: The #1 AI Integrated Digital Marketing Course in Kollam. Validated by 30+ companies, 100% placement support.">
+    <title>Eduvoyage Academy | Future of Digital Marketing</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. SETTINGS & VARS --- */
+        :root {
+            --primary: #2563eb;       /* Royal Blue */
+            --accent: #38bdf8;        /* Sky Blue */
+            --dark: #0f172a;          /* Deep Navy */
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --blur: 20px;
+            --gradient-text: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --shadow-card: 0 20px 40px -5px rgba(37, 99, 235, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f0f4ff;
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+
+        /* --- 2. ANIMATED BACKGROUND BLOBS --- */
+        .background-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: floatBlob 20s infinite ease-in-out alternate;
+        }
+
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #bfdbfe; animation-delay: 0s; }
+        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #e0f2fe; animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #dbeafe; animation-delay: -10s; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* --- 3. UTILITIES & ANIMATIONS --- */
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-delay:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-delay:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-delay:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-delay:nth-child(4) { transition-delay: 0.4s; }
+
+        /* --- 4. HEADER --- */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1280px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover::after { width: 100%; }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white !important;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+        
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* --- 5. HERO SECTION --- */
+        .hero {
+            min-height: 110vh; /* Extra height for smooth feel */
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: #bae6fd;
+            z-index: -1;
+            opacity: 0.6;
+            transform: rotate(-2deg);
+        }
+
+        .hero-sub {
+            font-family: 'Manjari', sans-serif;
+            font-size: 1.25rem;
+            color: #475569;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 90%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        /* 3D Floating Card */
+        .hero-card-container {
+            perspective: 1000px;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 30px;
+            padding: 3rem;
+            color: white;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s; /* JS handles smoother feel */
+            box-shadow: 0 30px 60px rgba(30, 64, 175, 0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            border-radius: 30px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-card h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transform: translateZ(50px);
+        }
+
+        .hero-card p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            transform: translateZ(30px);
+            line-height: 1.6;
+        }
+
+        /* Floating Badge on Card */
+        .card-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: #fff;
+            color: var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateZ(80px) rotate(5deg);
+        }
+
+        /* --- 6. WHY CHOOSE US (Glass Cards) --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .glass-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.15);
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -20px;
+            right: -20px;
+            transition: 0.4s;
+        }
+
+        .glass-card:hover::after {
+            transform: scale(10); /* Fill effect */
+            opacity: 0.05;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #eff6ff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .glass-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- 7. CERTIFICATIONS (Infinite Marquee) --- */
+        .cert-section {
+            padding: 6rem 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
+        }
+
+        .ctds-box {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            border: 1px solid #e2e8f0;
+        }
+
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Fade effect on edges of marquee */
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-wrapper::before { left: 0; background: linear-gradient(to right, #f0f4ff, transparent); }
+        .marquee-wrapper::after { right: 0; background: linear-gradient(to left, #f0f4ff, transparent); }
+
+        .marquee-content {
+            display: flex;
+            gap: 4rem;
+            width: max-content;
+            animation: scroll 20s linear infinite;
+        }
+
+        .marquee-item {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+        
+        .marquee-item i { font-size: 2rem; color: var(--primary); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 2rem)); }
+        }
+
+        /* --- 8. MENTORS (Slide Up Cards) --- */
+        .mentor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .mentor-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            height: 350px; /* Fixed height */
+            group-hover: shadow-lg;
+        }
+
+        .mentor-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .mentor-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            transform: translateY(100px); /* Hidden initially */
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .mentor-card:hover .mentor-details {
+            transform: translateY(0);
+        }
+        
+        .mentor-card:hover .mentor-img-placeholder {
+            transform: scale(1.1);
+        }
+
+        .mentor-details h3 { color: var(--primary); margin-bottom: 5px; }
+        .mentor-details p { font-size: 0.9rem; color: #64748b; }
+
+        /* --- 9. FAQ (Clean Accordion) --- */
+        .faq-section {
+            padding: 6rem 0;
+        }
+        
+        .faq-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-item:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 1.5rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer { padding-bottom: 1.5rem; max-height: 300px; }
+        .faq-item.active .faq-question { color: var(--primary); }
+        .faq-item i { transition: 0.3s; }
+        .faq-item.active i { transform: rotate(180deg); }
+
+        /* --- 10. FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 6rem 0 3rem;
+            text-align: center;
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .glow-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+            animation: pulse 2s infinite;
+            transition: 0.3s;
+        }
+
+        .glow-btn:hover {
+            transform: scale(1.05);
+            background: white;
+            color: var(--primary);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 968px) {
+            header { top: 0; width: 100%; border-radius: 0; padding: 1rem; }
+            
+            /* HERO FIXES */
+            .hero {
+                min-height: auto;
+                padding-top: 120px;
+                padding-bottom: 4rem;
+                display: block; /* Allows content to flow naturally */
+            }
+
+            .hero-grid { 
+                grid-template-columns: 1fr; 
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* This centers the children horizontally */
+                text-align: center; /* This centers the text inside the children */
+                gap: 3rem; 
+            }
+            
+            .hero-text h1 { 
+                font-size: 2.2rem; /* Reduced Font Size */
+                line-height: 1.2;
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+                margin: 0 auto 2rem auto; /* Explicitly center the box */
+                width: 95%; /* Use slightly more width on mobile */
+            }
+
+            /* Disable 3D Card tilt and fix layout on mobile */
+            .hero-card { 
+                width: 100%;
+                margin: 0;
+                transform: none !important; 
+                padding: 2rem;
+            }
+            
+            .hero-card h2 {
+                font-size: 2rem;
+            }
+
+            .hamburger { display: block; color: var(--primary); z-index: 1001; }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%; /* Full width for better UX */
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 4rem;
+                transition: 0.4s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            .nav-menu.active { right: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header>
+        <div class="logo">Eduvoyage Academy</div>
+        <nav>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="https://wa.me/919999999999" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Talk to Experts</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <div class="hero-text">
+                    <h1 class="reveal">Learn AI Integrated <br><span>Digital Marketing</span></h1>
+                    <div class="hero-sub reveal stagger-delay">
+                        Don't settle for an ordinary course. Learn an AI-Integrated Digital Marketing course validated by 30+ digital marketing companies.
+                    </div>
+                </div>
+
+                <div class="hero-card-container reveal stagger-delay">
+                    <div class="hero-card" id="tiltCard">
+                        <div class="card-badge">HOT TREND</div>
+                        <h2>$1 Trillion Opportunity</h2>
+                        <p>By 2026, digital advertising spend is projected to hit $1 Trillion globally. Are you ready to be part of it?</p>
+                        <div style="margin-top: 2rem; font-size: 3rem; opacity: 0.5;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container" style="padding: 6rem 0;">
+        <div class="section-header reveal">
+            <h2>Why Choose Us</h2>
+        </div>
+        
+        <div class="features-grid">
+            <div class="glass-card reveal stagger-delay">
+                <div class="icon-box"><i class="fas fa-certificate"></i></div>
+                <h3>Globally Recognized</h3>
+                <p>Embassy attestations from Croatia, UK, UAE, and Saudi Arabia depict CTDS’ official recognition.</p>
+            </div>
+            <div class="glass-card reveal stagger-delay">
+                <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                <h3>Industry-ready Syllabus</h3>
+                <p>Gain real industry exposure, and get career-ready for opportunities across the globe.</p>
+            </div>
+            <div class="glass-card reveal stagger-delay">
+                <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                <h3>Expert Mentors</h3>
+                <p>We empower digital aspirants through hands-on workplace exposure with industry veterans.</p>
+            </div>
+            <div class="glass-card reveal stagger-delay">
+                <div class="icon-box"><i class="fas fa-rocket"></i></div>
+                <h3>100% Placement</h3>
+                <p>Our placement team connects you with 30+ hiring partners across Kerala.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cert-section">
+        <div class="container">
+            <div class="ctds-box reveal">
+                <i class="fas fa-award" style="font-size: 3rem; color: var(--primary); margin-bottom:1rem;"></i>
+                <h3>CTDS Diploma Certified</h3>
+                <p>Accredited Diploma Certificate Recognized Globally</p>
+            </div>
+            
+            <div class="marquee-wrapper reveal">
+                <div class="marquee-content">
+                    <div class="marquee-item"><i class="fab fa-google"></i> Google Ads</div>
+                    <div class="marquee-item"><i class="fab fa-meta"></i> Meta Certified</div>
+                    <div class="marquee-item"><i class="fab fa-hubspot"></i> HubSpot</div>
+                    <div class="marquee-item"><i class="fab fa-searchengin"></i> SEMrush</div>
+                    <div class="marquee-item"><i class="fab fa-linkedin"></i> LinkedIn</div>
+                    <div class="marquee-item"><i class="fab fa-google"></i> Google Analytics</div>
+                    <div class="marquee-item"><i class="fab fa-google"></i> Google Ads</div>
+                    <div class="marquee-item"><i class="fab fa-meta"></i> Meta Certified</div>
+                    <div class="marquee-item"><i class="fab fa-hubspot"></i> HubSpot</div>
+                    <div class="marquee-item"><i class="fab fa-searchengin"></i> SEMrush</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 6rem 0;">
+        <div class="section-header reveal">
+            <h2>Meet Our Mentors</h2>
+        </div>
+        <div class="mentor-grid">
+            <div class="mentor-card reveal stagger-delay">
+                <div class="mentor-img-placeholder"><i class="fas fa-user"></i></div>
+                <div class="mentor-details">
+                    <h3>Arun Kumar</h3>
+                    <p>Head of Digital Strategy</p>
+                </div>
+            </div>
+            <div class="mentor-card reveal stagger-delay">
+                <div class="mentor-img-placeholder"><i class="fas fa-user-graduate"></i></div>
+                <div class="mentor-details">
+                    <h3>Sneha Menon</h3>
+                    <p>Meta Ads Specialist</p>
+                </div>
+            </div>
+            <div class="mentor-card reveal stagger-delay">
+                <div class="mentor-img-placeholder"><i class="fas fa-user-tie"></i></div>
+                <div class="mentor-details">
+                    <h3>Rahul Raj</h3>
+                    <p>SEO Expert</p>
+                </div>
+            </div>
+            <div class="mentor-card reveal stagger-delay">
+                <div class="mentor-img-placeholder"><i class="fas fa-user-astronaut"></i></div>
+                <div class="mentor-details">
+                    <h3>Anjali Krishna</h3>
+                    <p>AI Tools Trainer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" style="background: rgba(255,255,255,0.4);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-box">
+                <div class="faq-item reveal">
+                    <div class="faq-question">What is the duration of the course? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Our AI Integrated Digital Marketing course spans 3 to 6 months depending on module selection, including practical internship.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Do I need coding knowledge? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">No, digital marketing does not require coding knowledge. We teach you how to use tools effectively.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Is placement guaranteed? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes, we provide 100% placement assistance, preparing you for interviews and connecting you with our 30+ hiring partners.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container reveal">
+            <div class="footer-cta">
+                <h2>Still confused about your career?</h2>
+                <a href="#" class="glow-btn">Book a Free Career Guidance Call</a>
+            </div>
+            <div style="margin-top: 4rem; opacity: 0.6; font-size: 0.9rem;">
+                &copy; 2024 Eduvoyage Academy. Designed for Excellence.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // 2. Scroll Animations (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // 3. 3D Tilt Effect for Hero Card
+        const card = document.getElementById('tiltCard');
+        
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; // Disable on mobile
+            
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
+            
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        // Reset card on mouse leave
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // 4. FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
