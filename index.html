@@ -10,6 +10,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+
+
+/* --- NEW SLIDER DESIGN FOR SYLLABUS --- */
+.syllabus-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    /* Fade effect on sides */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.syllabus-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: smoothScroll 35s linear infinite;
+}
+
+/* The Individual Card */
+.company-card {
+    background: rgba(255, 255, 255, 0.9);
+    width: 200px;
+    height: 160px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.company-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+    border-color: var(--primary);
+    z-index: 10;
+}
+
+/* Image Styling */
+.company-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.company-card:hover .company-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Text Styling */
+.company-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #64748b;
+    transition: 0.3s;
+}
+
+.company-card:hover .company-name {
+    color: var(--dark);
+}
+
+/* Animation Keyframes */
+@keyframes smoothScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Moves half the total width */
+}
+
+/* Interaction */
+.syllabus-slider-container:hover .syllabus-track {
+    animation-play-state: paused;
+}
         /* --- 1. SETTINGS & VARS --- */
         :root {
             --primary: #2563eb;       /* Royal Blue */
@@ -18,7 +100,6 @@
             --light: #f8fafc;
             --glass: rgba(255, 255, 255, 0.7);
             --glass-border: rgba(255, 255, 255, 0.5);
-            --blur: 20px;
             --gradient-text: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
             --shadow-card: 0 20px 40px -5px rgba(37, 99, 235, 0.1);
         }
@@ -95,6 +176,20 @@
         .stagger-delay:nth-child(2) { transition-delay: 0.2s; }
         .stagger-delay:nth-child(3) { transition-delay: 0.3s; }
         .stagger-delay:nth-child(4) { transition-delay: 0.4s; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
 
         /* --- 4. HEADER --- */
         header {
@@ -177,7 +272,7 @@
 
         /* --- 5. HERO SECTION --- */
         .hero {
-            min-height: 110vh; /* Extra height for smooth feel */
+            min-height: 110vh;
             display: flex;
             align-items: center;
             padding-top: 80px;
@@ -233,10 +328,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.03);
         }
 
-        /* 3D Floating Card */
-        .hero-card-container {
-            perspective: 1000px;
-        }
+        .hero-card-container { perspective: 1000px; }
 
         .hero-card {
             background: linear-gradient(135deg, #1e40af, #3b82f6);
@@ -245,7 +337,7 @@
             color: white;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.1s; /* JS handles smoother feel */
+            transition: transform 0.1s;
             box-shadow: 0 30px 60px rgba(30, 64, 175, 0.4);
             border: 1px solid rgba(255,255,255,0.2);
         }
@@ -260,48 +352,20 @@
             pointer-events: none;
         }
 
-        .hero-card h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            transform: translateZ(50px);
-        }
+        .hero-card h2 { font-size: 3rem; margin-bottom: 1rem; transform: translateZ(50px); }
+        .hero-card p { font-size: 1.2rem; opacity: 0.9; transform: translateZ(30px); line-height: 1.6; }
 
-        .hero-card p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            transform: translateZ(30px);
-            line-height: 1.6;
-        }
-
-        /* Floating Badge on Card */
         .card-badge {
             position: absolute;
-            top: -20px;
-            right: -20px;
-            background: #fff;
-            color: var(--primary);
+            top: -20px; right: -20px;
+            background: #fff; color: var(--primary);
             padding: 1rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 800;
+            border-radius: 20px; font-weight: 800;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transform: translateZ(80px) rotate(5deg);
         }
 
         /* --- 6. WHY CHOOSE US (Glass Cards) --- */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -321,115 +385,140 @@
             z-index: 1;
         }
 
-        .glass-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.15);
-        }
+        .glass-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(37, 99, 235, 0.15); }
 
         .glass-card::after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 100px; height: 100px;
             background: var(--primary);
             opacity: 0.1;
             border-radius: 50%;
-            top: -20px;
-            right: -20px;
+            top: -20px; right: -20px;
             transition: 0.4s;
         }
 
-        .glass-card:hover::after {
-            transform: scale(10); /* Fill effect */
-            opacity: 0.05;
-        }
+        .glass-card:hover::after { transform: scale(10); opacity: 0.05; }
 
         .icon-box {
-            width: 60px;
-            height: 60px;
-            background: #eff6ff;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+            width: 60px; height: 60px;
+            background: #eff6ff; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary); margin-bottom: 1.5rem;
         }
 
-        .glass-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
+        .glass-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--dark); }
+        .glass-card p { color: #64748b; font-size: 0.95rem; line-height: 1.6; }
 
-        .glass-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* --- 7. CERTIFICATIONS (Infinite Marquee) --- */
+        /* --- 7. CERTIFICATIONS & SYLLABUS --- */
         .cert-section {
             padding: 6rem 0;
-            overflow: hidden;
             background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
         }
 
         .ctds-box {
             background: white;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
+            max-width: 600px; margin: 0 auto 4rem; padding: 2rem;
+            border-radius: 20px; text-align: center;
             box-shadow: var(--shadow-card);
             border: 1px solid #e2e8f0;
         }
 
         .marquee-wrapper {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
+            width: 100%; overflow: hidden; position: relative;
         }
-        
-        /* Fade effect on edges of marquee */
         .marquee-wrapper::before, .marquee-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 150px;
-            height: 100%;
-            z-index: 2;
+            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
         }
         .marquee-wrapper::before { left: 0; background: linear-gradient(to right, #f0f4ff, transparent); }
         .marquee-wrapper::after { right: 0; background: linear-gradient(to left, #f0f4ff, transparent); }
 
         .marquee-content {
-            display: flex;
-            gap: 4rem;
-            width: max-content;
+            display: flex; gap: 4rem; width: max-content;
             animation: scroll 20s linear infinite;
         }
-
-        .marquee-item {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-        }
         
+        .marquee-item {
+            font-size: 1.5rem; font-weight: 800; color: #94a3b8;
+            display: flex; align-items: center; gap: 10px; white-space: nowrap;
+        }
         .marquee-item i { font-size: 2rem; color: var(--primary); }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 2rem)); }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 2rem)); } }
+
+        /* --- NEW SECTION: SYLLABUS COLLABORATION --- */
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
         }
 
-        /* --- 8. MENTORS (Slide Up Cards) --- */
+        .collab-item {
+            background: white;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-weight: 700;
+            transition: 0.3s;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .collab-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .collab-item i { font-size: 1.8rem; }
+        .collab-item span { font-size: 0.8rem; }
+
+        /* --- NEW SECTION: TOOLS WE USE --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            padding: 1.5rem 0.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            background: white;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+            transform: scale(1.05);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            display: inline-block;
+        }
+
+        .tool-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        /* --- 8. MENTORS --- */
         .mentor-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -443,54 +532,34 @@
             overflow: hidden;
             position: relative;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            height: 350px; /* Fixed height */
-            group-hover: shadow-lg;
+            height: 350px;
         }
 
         .mentor-img-placeholder {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #fff;
             transition: 0.5s;
         }
 
         .mentor-details {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: absolute; bottom: 0; left: 0; width: 100%;
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5rem;
-            transform: translateY(100px); /* Hidden initially */
+            transform: translateY(100px);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-top: 1px solid #e2e8f0;
         }
 
-        .mentor-card:hover .mentor-details {
-            transform: translateY(0);
-        }
-        
-        .mentor-card:hover .mentor-img-placeholder {
-            transform: scale(1.1);
-        }
-
+        .mentor-card:hover .mentor-details { transform: translateY(0); }
+        .mentor-card:hover .mentor-img-placeholder { transform: scale(1.1); }
         .mentor-details h3 { color: var(--primary); margin-bottom: 5px; }
         .mentor-details p { font-size: 0.9rem; color: #64748b; }
 
-        /* --- 9. FAQ (Clean Accordion) --- */
-        .faq-section {
-            padding: 6rem 0;
-        }
-        
-        .faq-box {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        /* --- 9. FAQ --- */
+        .faq-section { padding: 6rem 0; }
+        .faq-box { max-width: 800px; margin: 0 auto; }
 
         .faq-item {
             background: white;
@@ -511,21 +580,22 @@
             align-items: center;
             font-weight: 600;
             font-size: 1.1rem;
+            user-select: none; /* Prevents text selection on rapid clicking */
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease;
+            transition: max-height 0.3s ease-out;
             padding: 0 1.5rem;
             color: #475569;
             line-height: 1.6;
         }
         
-        .faq-item.active .faq-answer { padding-bottom: 1.5rem; max-height: 300px; }
+        /* When active, we don't set height in CSS, we do it in JS */
         .faq-item.active .faq-question { color: var(--primary); }
-        .faq-item i { transition: 0.3s; }
         .faq-item.active i { transform: rotate(180deg); }
+        .faq-item i { transition: 0.3s; }
 
         /* --- 10. FOOTER --- */
         footer {
@@ -539,10 +609,7 @@
             overflow: hidden;
         }
 
-        .footer-cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
+        .footer-cta h2 { font-size: 2.5rem; margin-bottom: 2.5rem; }
 
         .glow-btn {
             display: inline-block;
@@ -558,11 +625,7 @@
             transition: 0.3s;
         }
 
-        .glow-btn:hover {
-            transform: scale(1.05);
-            background: white;
-            color: var(--primary);
-        }
+        .glow-btn:hover { transform: scale(1.05); background: white; color: var(--primary); }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
@@ -570,39 +633,38 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- MOBILE RESPONSIVE FIXES --- */
         @media (max-width: 968px) {
             header { top: 0; width: 100%; border-radius: 0; padding: 1rem; }
             
-            /* HERO FIXES */
             .hero {
                 min-height: auto;
                 padding-top: 120px;
                 padding-bottom: 4rem;
-                display: block; /* Allows content to flow naturally */
+                display: block;
             }
 
             .hero-grid { 
                 grid-template-columns: 1fr; 
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* This centers the children horizontally */
-                text-align: center; /* This centers the text inside the children */
+                align-items: center; 
+                text-align: center; 
                 gap: 3rem; 
             }
             
-            .hero-text h1 { 
-                font-size: 2.2rem; /* Reduced Font Size */
-                line-height: 1.2;
-            }
+            /* Text Size Reduction for Mobile */
+            .hero-text h1 { font-size: 2.2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .footer-cta h2 { font-size: 1.8rem; }
+            .hero-card h2 { font-size: 1.8rem; }
 
             .hero-sub {
                 font-size: 1rem;
-                margin: 0 auto 2rem auto; /* Explicitly center the box */
-                width: 95%; /* Use slightly more width on mobile */
+                margin: 0 auto 2rem auto;
+                width: 95%;
             }
 
-            /* Disable 3D Card tilt and fix layout on mobile */
             .hero-card { 
                 width: 100%;
                 margin: 0;
@@ -610,17 +672,13 @@
                 padding: 2rem;
             }
             
-            .hero-card h2 {
-                font-size: 2rem;
-            }
-
             .hamburger { display: block; color: var(--primary); z-index: 1001; }
             
             .nav-menu {
                 position: fixed;
                 top: 70px;
                 right: -100%;
-                width: 100%; /* Full width for better UX */
+                width: 100%;
                 height: 100vh;
                 background: white;
                 flex-direction: column;
@@ -648,7 +706,8 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#syllabus">Syllabus</a></li>
+                <li><a href="#tools">Tools</a></li>
                 <li><a href="https://wa.me/919999999999" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Talk to Experts</a></li>
             </ul>
         </nav>
@@ -712,6 +771,10 @@
 
     <section class="cert-section">
         <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Certifications</h2>
+            </div>
+
             <div class="ctds-box reveal">
                 <i class="fas fa-award" style="font-size: 3rem; color: var(--primary); margin-bottom:1rem;"></i>
                 <h3>CTDS Diploma Certified</h3>
@@ -734,6 +797,113 @@
             </div>
         </div>
     </section>
+
+
+    <section id="tools" class="container" style="padding: 0 0 6rem 0;">
+        <div class="section-header reveal">
+            <h2>Tools You Will Master</h2>
+            <p style="color: #64748b; margin-top: 10px;">Hands-on training on premium tools</p>
+        </div>
+        <div class="tools-grid reveal">
+            <div class="tool-card"><i class="fab fa-google tool-icon"></i><div class="tool-name">Google Ads</div></div>
+            <div class="tool-card"><i class="fab fa-facebook tool-icon"></i><div class="tool-name">Meta Ads</div></div>
+            <div class="tool-card"><i class="fab fa-instagram tool-icon"></i><div class="tool-name">Instagram</div></div>
+            <div class="tool-card"><i class="fas fa-chart-bar tool-icon"></i><div class="tool-name">Analytics</div></div>
+            <div class="tool-card"><i class="fas fa-search tool-icon"></i><div class="tool-name">SEMrush</div></div>
+            <div class="tool-card"><i class="fas fa-link tool-icon"></i><div class="tool-name">Ahrefs</div></div>
+            <div class="tool-card"><i class="fab fa-wordpress tool-icon"></i><div class="tool-name">WordPress</div></div>
+            <div class="tool-card"><i class="fab fa-shopify tool-icon"></i><div class="tool-name">Shopify</div></div>
+            <div class="tool-card"><i class="fas fa-paint-brush tool-icon"></i><div class="tool-name">Canva</div></div>
+            <div class="tool-card"><i class="fas fa-robot tool-icon"></i><div class="tool-name">ChatGPT</div></div>
+            <div class="tool-card"><i class="fas fa-envelope tool-icon"></i><div class="tool-name">Mailchimp</div></div>
+            <div class="tool-card"><i class="fab fa-hubspot tool-icon"></i><div class="tool-name">HubSpot</div></div>
+            <div class="tool-card"><i class="fas fa-tags tool-icon"></i><div class="tool-name">Tag Manager</div></div>
+            <div class="tool-card"><i class="fas fa-video tool-icon"></i><div class="tool-name">Premiere Pro</div></div>
+            <div class="tool-card"><i class="fab fa-youtube tool-icon"></i><div class="tool-name">YouTube</div></div>
+            <div class="tool-card"><i class="fab fa-linkedin tool-icon"></i><div class="tool-name">LinkedIn</div></div>
+            <div class="tool-card"><i class="fab fa-twitter tool-icon"></i><div class="tool-name">X (Twitter)</div></div>
+            <div class="tool-card"><i class="fas fa-bullseye tool-icon"></i><div class="tool-name">SpyFu</div></div>
+        </div>
+    </section>
+
+    <section id="syllabus" class="container" style="padding: 6rem 0;">
+    <div class="section-header reveal">
+        <h2>Syllabus Contributors</h2>
+        <p style="color: #64748b; margin-top: 10px;">Curriculum designed with insights from global leaders</p>
+    </div>
+
+    <div class="syllabus-slider-container reveal">
+        <div class="syllabus-track">
+            
+            <div class="company-card">
+                <img src="webinnovates_ltd_logo.jpeg" alt="TechCorp" class="company-logo">
+                <span class="company-name">Websorbz</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/ea580c/white?text=MX" alt="MediaX" class="company-logo">
+                <span class="company-name">MediaX</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/16a34a/white?text=GA" alt="GlobalAd" class="company-logo">
+                <span class="company-name">GlobalAd</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/9333ea/white?text=DL" alt="DataLytics" class="company-logo">
+                <span class="company-name">DataLytics</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/dc2626/white?text=BZ" alt="BuzzMark" class="company-logo">
+                <span class="company-name">BuzzMark</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/0891b2/white?text=SF" alt="SocialFlow" class="company-logo">
+                <span class="company-name">SocialFlow</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/4f46e5/white?text=WW" alt="WebWiz" class="company-logo">
+                <span class="company-name">WebWiz</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/be123c/white?text=SM" alt="SEO Master" class="company-logo">
+                <span class="company-name">SEO Master</span>
+            </div>
+
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/2563eb/white?text=TC" alt="TechCorp" class="company-logo">
+                <span class="company-name">TechCorp</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/ea580c/white?text=MX" alt="MediaX" class="company-logo">
+                <span class="company-name">MediaX</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/16a34a/white?text=GA" alt="GlobalAd" class="company-logo">
+                <span class="company-name">GlobalAd</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/9333ea/white?text=DL" alt="DataLytics" class="company-logo">
+                <span class="company-name">DataLytics</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/dc2626/white?text=BZ" alt="BuzzMark" class="company-logo">
+                <span class="company-name">BuzzMark</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/0891b2/white?text=SF" alt="SocialFlow" class="company-logo">
+                <span class="company-name">SocialFlow</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/4f46e5/white?text=WW" alt="WebWiz" class="company-logo">
+                <span class="company-name">WebWiz</span>
+            </div>
+            <div class="company-card">
+                <img src="https://placehold.co/100x100/be123c/white?text=SM" alt="SEO Master" class="company-logo">
+                <span class="company-name">SEO Master</span>
+            </div>
+
+        </div>
+    </div>
+</section>
 
     <section class="container" style="padding: 6rem 0;">
         <div class="section-header reveal">
@@ -814,7 +984,7 @@
             hamburger.innerHTML = navMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
-        // 2. Scroll Animations (Intersection Observer)
+        // 2. Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -825,30 +995,40 @@
 
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-        // 3. 3D Tilt Effect for Hero Card
+        // 3. 3D Tilt Effect
         const card = document.getElementById('tiltCard');
-        
         document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth < 768) return; // Disable on mobile
-            
+            if (window.innerWidth < 768) return; 
             const x = (window.innerWidth / 2 - e.pageX) / 25;
             const y = (window.innerHeight / 2 - e.pageY) / 25;
-            
             card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
         });
-
-        // Reset card on mouse leave
         document.addEventListener('mouseleave', () => {
             card.style.transform = `rotateY(0deg) rotateX(0deg)`;
         });
 
-        // 4. FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                parent.classList.toggle('active');
-            });
+        // 4. FAQ Logic (FIXED)
+       document.querySelectorAll('.faq-question').forEach(item => {
+        item.addEventListener('click', () => {
+            const parent = item.parentElement;
+            const answer = parent.querySelector('.faq-answer');
+
+            // Toggle Active Class
+            parent.classList.toggle('active');
+
+            if (parent.classList.contains('active')) {
+                // We must apply the padding style FIRST so it exists
+                answer.style.paddingBottom = "1.5rem";
+                
+                // Then calculate height. We ADD 30px (approx 1.5rem) to the scrollHeight 
+                // to account for the padding we just added, otherwise the text gets cut off.
+                answer.style.maxHeight = (answer.scrollHeight + 30) + "px";
+            } else {
+                answer.style.maxHeight = null;
+                answer.style.paddingBottom = "0";
+            }
         });
+    });
     </script>
 </body>
 </html>
