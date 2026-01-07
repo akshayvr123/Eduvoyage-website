@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .logo{ width: 200px; }
+        .logo{ width: 150px; }
 
         /* --- 1. SETTINGS & VARS --- */
         :root {
@@ -38,7 +38,7 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
 
-        /* --- SYLLABUS SLIDER --- */
+        /* --- 2. SYLLABUS SLIDER (Reverted to Original) --- */
         .syllabus-slider-container {
             position: relative;
             width: 100%;
@@ -116,7 +116,12 @@
 
         .syllabus-slider-container:hover .syllabus-track { animation-play-state: paused; }
 
-        /* --- 2. BACKGROUND BLOBS --- */
+        /* --- MOBILE ONLY CONTENT (Hidden by default) --- */
+        .mobile-syllabus-extra {
+            display: none; /* Hidden on Desktop */
+        }
+
+        /* --- 3. BACKGROUND BLOBS --- */
         .background-blobs {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; overflow: hidden; background: #fff;
@@ -136,7 +141,7 @@
             100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* --- 3. UTILITIES & ANIMATIONS --- */
+        /* --- 4. UTILITIES & ANIMATIONS --- */
         .container { width: 90%; max-width: 1280px; margin: 0 auto; position: relative; }
         .section-padding { padding: 8rem 0; }
 
@@ -160,7 +165,7 @@
             display: inline-block;
         }
 
-        /* --- 4. HEADER --- */
+        /* --- 5. HEADER --- */
         header {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 1280px;
@@ -193,7 +198,7 @@
         
         .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
 
-        /* --- 5. HERO SECTION --- */
+        /* --- 6. HERO SECTION --- */
         .hero { min-height: auto; padding-top: 180px; padding-bottom: 8rem; display: flex; align-items: center; }
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
 
@@ -238,7 +243,7 @@
             transform: translateZ(80px) rotate(5deg);
         }
 
-        /* --- 6. FEATURES --- */
+        /* --- 7. FEATURES --- */
         .features-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem; padding: 1rem 0; 
@@ -265,11 +270,20 @@
         .glass-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--dark); }
         .glass-card p { color: #64748b; font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- 7. CERTIFICATIONS --- */
+        /* --- 8. CERTIFICATIONS & TOOLS (FIXED SPACING) --- */
         .cert-section {
-            padding: 8rem 0;
+            /* Fix: Reduced bottom padding */
+            padding-top: 8rem;
+            padding-bottom: 2rem; 
             background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5), transparent);
         }
+
+        /* Fix: Reduced top padding specifically for Tools section */
+        #tools {
+            padding-top: 2rem;
+            padding-bottom: 8rem;
+        }
+
         .ctds-box {
             background: white; max-width: 600px; margin: 0 auto 2.5rem;
             padding: 2rem; border-radius: 20px; text-align: center;
@@ -309,7 +323,7 @@
         .tool-icon { font-size: 2rem; margin-bottom: 0.8rem; color: var(--primary); display: inline-block; }
         .tool-name { font-size: 0.85rem; font-weight: 600; color: #475569; }
 
-        /* --- 8. MENTORS (UPDATED WITH IMAGES) --- */
+        /* --- 9. MENTORS --- */
         .mentor-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem; padding: 1rem 0;
@@ -319,32 +333,23 @@
             position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.05); height: 350px;
             cursor: pointer;
         }
-        
-        /* New Image Class */
         .mentor-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
+            width: 100%; height: 100%; object-fit: cover; object-position: top;
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: block;
         }
-        
         .mentor-details {
             position: absolute; bottom: 0; left: 0; width: 100%;
             background: rgba(255, 255, 255, 0.95); padding: 1.5rem;
             transform: translateY(100px); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-top: 1px solid #e2e8f0;
         }
-        
-        /* Hover Effects */
         .mentor-card:hover .mentor-details { transform: translateY(0); }
         .mentor-card:hover .mentor-img { transform: scale(1.05); }
-        
         .mentor-details h3 { color: var(--primary); margin-bottom: 5px; }
         .mentor-details p { font-size: 0.9rem; color: #64748b; }
 
-        /* --- 9. FAQ SECTION --- */
+        /* --- 10. FAQ SECTION --- */
         .faq-section { padding: 8rem 0; } 
         .faq-box { max-width: 800px; margin: 0 auto; }
 
@@ -373,7 +378,7 @@
         .faq-item.faq-active i { transform: rotate(180deg); }
         .faq-item i { transition: 0.3s; }
 
-        /* --- 10. FOOTER --- */
+        /* --- 11. FOOTER --- */
         footer {
             background: var(--dark); color: white; padding: 6rem 0 3rem;
             text-align: center; border-top-left-radius: 60px; border-top-right-radius: 60px;
@@ -417,8 +422,35 @@
                 box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 999;
             }
             .nav-menu.active { right: 0; }
-            #about, #syllabus, .cert-section, .faq-section, .section-padding { padding: 3rem 0 !important; }
+            #about, .cert-section, .faq-section, .section-padding { padding: 3rem 0 !important; }
             footer { padding: 3rem 0 2rem; }
+            
+            /* Specific fix for tools mobile padding override */
+            #tools { padding-top: 1rem !important; padding-bottom: 3rem !important; }
+
+            /* --- SHOW EXTRA CONTENT ONLY ON MOBILE --- */
+            .mobile-syllabus-extra {
+                display: block !important; /* Visible on mobile */
+                margin-top: 2rem;
+                background: white;
+                border: 1px solid #e2e8f0;
+                border-radius: 20px;
+                padding: 1.5rem;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .extra-badge {
+                background: #dbeafe; color: var(--primary);
+                padding: 0.4rem 0.8rem; border-radius: 50px;
+                font-size: 0.75rem; font-weight: 800; display: inline-block;
+                margin-bottom: 0.8rem;
+            }
+
+            .extra-content h3 { font-size: 1.25rem; color: var(--dark); margin-bottom: 0.4rem; }
+            .extra-content p { color: #64748b; font-size: 0.9rem; line-height: 1.5; }
         }
     </style>
 </head>
@@ -432,7 +464,7 @@
 
     <header>
         <div class="logo">
-            <img class="logo" src="logo5.png" alt="logo">
+            <img class="logo" src="logo-ok.png" alt="logo">
         </div>
         <nav>
             <ul class="nav-menu" id="nav-menu">
@@ -440,7 +472,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#syllabus">Syllabus</a></li>
                 <li><a href="#tools">Tools</a></li>
-                <li><a href="https://wa.me/919999999999" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Talk to Experts</a></li>
+                <li><a href="https://wa.me/917510107770" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Talk to Experts</a></li>
             </ul>
         </nav>
         <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
@@ -469,6 +501,42 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <section id="syllabus" class="container section-padding">
+        <div class="section-header reveal">
+            <h2>Syllabus Contributors</h2>
+            <p style="color: #64748b; margin-top: 10px;">Curriculum designed with insights from 30+ global leaders</p>
+        </div>
+
+        <div class="syllabus-slider-container reveal">
+            
+            <div class="syllabus-track">
+                <div class="company-card"><img src="webinnovates_ltd_logo.jpeg" class="company-logo"><span class="company-name">Foulin</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/ea580c/white?text=MX" class="company-logo"><span class="company-name">MediaX</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/16a34a/white?text=GA" class="company-logo"><span class="company-name">GlobalAd</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/9333ea/white?text=DL" class="company-logo"><span class="company-name">DataLytics</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/dc2626/white?text=BZ" class="company-logo"><span class="company-name">BuzzMark</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/0891b2/white?text=SF" class="company-logo"><span class="company-name">SocialFlow</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/4f46e5/white?text=WW" class="company-logo"><span class="company-name">WebWiz</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/be123c/white?text=SM" class="company-logo"><span class="company-name">SEO Master</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/2563eb/white?text=TC" class="company-logo"><span class="company-name">TechCorp</span></div>
+                <div class="company-card"><img src="webinnovates_ltd_logo.jpeg" class="company-logo"><span class="company-name">Foulin</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/ea580c/white?text=MX" class="company-logo"><span class="company-name">MediaX</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/16a34a/white?text=GA" class="company-logo"><span class="company-name">GlobalAd</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/9333ea/white?text=DL" class="company-logo"><span class="company-name">DataLytics</span></div>
+                <div class="company-card"><img src="https://placehold.co/100x100/dc2626/white?text=BZ" class="company-logo"><span class="company-name">BuzzMark</span></div>
+            </div>
+
+            <div class="mobile-syllabus-extra">
+                <div class="extra-badge"><i class="fas fa-check-circle"></i> 100% Industry Verified</div>
+                <div class="extra-content">
+                    <h3>Why does this matter?</h3>
+                    <p>Agencies don't just hire our students; they designed what you learn. We bridge the gap between "Textbook" and "Trend".</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -504,7 +572,7 @@
     <section class="cert-section">
         <div class="container">
             <div class="section-header reveal">
-                <h2>Our Certifications</h2>
+                <h2>Certifications & tools</h2>
             </div>
 
             <div class="ctds-box reveal">
@@ -532,12 +600,8 @@
 
 
     <section id="tools" class="container section-padding">
-        <div class="section-header reveal">
-            <h2>Tools You Will Master</h2>
-            <p style="color: #64748b; margin-top: 10px;">Hands-on training on premium tools</p>
-        </div>
         <div class="tools-grid reveal">
-                 <div class="tool-card"><i class="fab fa-wordpress tool-icon"></i><div class="tool-name">WordPress</div></div>
+            <div class="tool-card"><i class="fab fa-wordpress tool-icon"></i><div class="tool-name">WordPress</div></div>
             <div class="tool-card"><i class="fab fa-shopify tool-icon"></i><div class="tool-name">Shopify</div></div>
             <div class="tool-card"><i class="fas fa-paint-brush tool-icon"></i><div class="tool-name">Canva</div></div>
             <div class="tool-card"><i class="fab fa-google tool-icon"></i><div class="tool-name">Google Ads</div></div>
@@ -552,90 +616,12 @@
             <div class="tool-card"><i class="fas fa-chart-line tool-icon"></i><div class="tool-name">Google trends</div></div>
             <div class="tool-card"><i class="fab fa-hubspot tool-icon"></i><div class="tool-name">HubSpot</div></div>
             <div class="tool-card"><i class="fas fa-tags tool-icon"></i><div class="tool-name">Tag Manager</div></div>
-             <div class="tool-card"><i class="fas fa-server tool-icon"></i><div class="tool-name">Hostinger</div></div>
+            <div class="tool-card"><i class="fas fa-server tool-icon"></i><div class="tool-name">Hostinger</div></div>
 
             <div class="tool-card"><i class="fas fa-video tool-icon"></i><div class="tool-name">Kling AI</div></div>
             <div class="tool-card"><i class="fas fa-clapperboard tool-icon"></i><div class="tool-name">Capcut</div></div>
             <div class="tool-card"><i class="fab fa-elementor tool-icon"></i><div class="tool-name">Elementer</div></div>
             <div class="tool-card"><i class="fab fa-google tool-icon"></i><div class="tool-name">Site Kit</div></div>
-        </div>
-    </section>
-
-    <section id="syllabus" class="container section-padding">
-        <div class="section-header reveal">
-            <h2>Syllabus Contributors</h2>
-            <p style="color: #64748b; margin-top: 10px;">Curriculum designed with insights from 30+ global leaders</p>
-        </div>
-
-        <div class="syllabus-slider-container reveal">
-            <div class="syllabus-track">
-                
-                <div class="company-card">
-                    <img src="webinnovates_ltd_logo.jpeg" alt="Websorbz" class="company-logo">
-                    <span class="company-name">Websorbz</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/ea580c/white?text=MX" alt="MediaX" class="company-logo">
-                    <span class="company-name">MediaX</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/16a34a/white?text=GA" alt="GlobalAd" class="company-logo">
-                    <span class="company-name">GlobalAd</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/9333ea/white?text=DL" alt="DataLytics" class="company-logo">
-                    <span class="company-name">DataLytics</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/dc2626/white?text=BZ" alt="BuzzMark" class="company-logo">
-                    <span class="company-name">BuzzMark</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/0891b2/white?text=SF" alt="SocialFlow" class="company-logo">
-                    <span class="company-name">SocialFlow</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/4f46e5/white?text=WW" alt="WebWiz" class="company-logo">
-                    <span class="company-name">WebWiz</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/be123c/white?text=SM" alt="SEO Master" class="company-logo">
-                    <span class="company-name">SEO Master</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/2563eb/white?text=TC" alt="TechCorp" class="company-logo">
-                    <span class="company-name">TechCorp</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/ea580c/white?text=MX" alt="MediaX" class="company-logo">
-                    <span class="company-name">MediaX</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/16a34a/white?text=GA" alt="GlobalAd" class="company-logo">
-                    <span class="company-name">GlobalAd</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/9333ea/white?text=DL" alt="DataLytics" class="company-logo">
-                    <span class="company-name">DataLytics</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/dc2626/white?text=BZ" alt="BuzzMark" class="company-logo">
-                    <span class="company-name">BuzzMark</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/0891b2/white?text=SF" alt="SocialFlow" class="company-logo">
-                    <span class="company-name">SocialFlow</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/4f46e5/white?text=WW" alt="WebWiz" class="company-logo">
-                    <span class="company-name">WebWiz</span>
-                </div>
-                <div class="company-card">
-                    <img src="https://placehold.co/100x100/be123c/white?text=SM" alt="SEO Master" class="company-logo">
-                    <span class="company-name">SEO Master</span>
-                </div>
-
-            </div>
         </div>
     </section>
 
@@ -645,31 +631,31 @@
         </div>
         <div class="mentor-grid">
             <div class="mentor-card reveal stagger-delay">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Arun Kumar" class="mentor-img">
+                <img src="aneesh2.jpeg" alt="Arun Kumar" class="mentor-img">
                 <div class="mentor-details">
-                    <h3>Arun Kumar</h3>
-                    <p>Head of Digital Strategy</p>
+                    <h3>Aneesh VR</h3>
+                    <p>Digital Marketer</p>
                 </div>
             </div>
             <div class="mentor-card reveal stagger-delay">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sneha Menon" class="mentor-img">
+                <img src="seo4.jpeg" alt="Sneha Menon" class="mentor-img">
                 <div class="mentor-details">
-                    <h3>Sneha Menon</h3>
-                    <p>Meta Ads Specialist</p>
+                    <h3>Fasaludheen Salam</h3>
+                    <p>SEO expert</p>
                 </div>
             </div>
             <div class="mentor-card reveal stagger-delay">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rahul Raj" class="mentor-img">
+                <img src="content-writer.jpeg" alt="Rahul Raj" class="mentor-img">
                 <div class="mentor-details">
-                    <h3>Rahul Raj</h3>
-                    <p>SEO Expert</p>
+                    <h3>Amruth Santhosh</h3>
+                    <p>Content Writer</p>
                 </div>
             </div>
             <div class="mentor-card reveal stagger-delay">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Anjali Krishna" class="mentor-img">
+                <img src="akshay-new.jpeg" alt="Anjali Krishna" class="mentor-img">
                 <div class="mentor-details">
-                    <h3>Anjali Krishna</h3>
-                    <p>AI Tools Trainer</p>
+                    <h3>Akshay VR</h3>
+                    <p>AI Ads Specialist</p>
                 </div>
             </div>
         </div>
@@ -683,15 +669,24 @@
             <div class="faq-box">
                 <div class="faq-item reveal">
                     <div class="faq-question">What is the duration of the course? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Our AI Integrated Digital Marketing course spans 3 to 6 months depending on module selection, including practical internship.</div>
+                    <div class="faq-answer">Our AI Integrated Digital Marketing course spans 3 to 4 months depending on module selection, including practical internship.</div>
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-question">Do I need coding knowledge? <i class="fas fa-chevron-down"></i></div>
                     <div class="faq-answer">No, digital marketing does not require coding knowledge. We teach you how to use tools effectively.</div>
                 </div>
                 <div class="faq-item reveal">
-                    <div class="faq-question">Is placement guaranteed? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Yes, we provide 100% placement assistance, preparing you for interviews and connecting you with our 30+ hiring partners.</div>
+                    <div class="faq-question">How the placement works? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Since the course is industry-ready and validated by 30+ digital marketing agencies, our placement team will connect you with our strong network of 200+ agencies to help you get placed.</div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">Is laptop must to attend the program? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes, a laptop is mandatory.Since the program is hands-on and practical-oriented, students are required to work on real tools.</div>
+                </div>
+                 <div class="faq-item reveal">
+                    <div class="faq-question">Did I get freelancing opportunities? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes , you’ll get guidance and opportunities to start freelancing, along with support on finding clients, building proposals, and working with real projects.
+ </div>
                 </div>
             </div>
         </div>
@@ -701,10 +696,10 @@
         <div class="container reveal">
             <div class="footer-cta">
                 <h2>Still confused about your career?</h2>
-                <a href="#" class="glow-btn">Book a Free Career Guidance Call</a>
+                <a href="https://wa.me/917510107770" class="glow-btn">Book a Free Career Guidance Call</a>
             </div>
             <div style="margin-top: 2.5rem; opacity: 0.6; font-size: 0.9rem;">
-                &copy; 2024 Eduvoyage Academy. Designed for Excellence.
+                &copy; 2026 Eduvoyage Academy. Designed for Excellence.
             </div>
         </div>
     </footer>
